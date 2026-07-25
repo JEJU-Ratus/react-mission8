@@ -16,7 +16,9 @@ function App() {
       StudyData.filter(item => {
         const matchedKeyword = item.title.toLowerCase().includes(keyword.toLowerCase());
         const matchedCategory = category === "all" || item.category === category;
-        return matchedCategory && matchedKeyword;
+        const matchedFavorite = !favoriteOnly || favoriteIds.includes(item.id);
+        console.log(matchedFavorite);
+        return matchedCategory && matchedKeyword && matchedFavorite;
       }),
     [keyword, category, favoriteIds, favoriteOnly],
   );
