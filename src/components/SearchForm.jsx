@@ -1,4 +1,4 @@
-export default function SearchForm({ onKeywordChange, inputRef, onFocusSearch }) {
+export default function SearchForm({ onKeywordChange, inputRef, onFocusSearch, onReset }) {
   return (
     <>
       <h2>검색</h2>
@@ -15,7 +15,9 @@ export default function SearchForm({ onKeywordChange, inputRef, onFocusSearch })
           <button className="btn btn-light" onClick={onFocusSearch}>
             검색창으로 이동
           </button>
-          <button className="btn btn-light">초기화</button>
+          <button className="btn btn-light" onClick={() => onReset()}>
+            초기화
+          </button>
         </div>
       </div>
     </>

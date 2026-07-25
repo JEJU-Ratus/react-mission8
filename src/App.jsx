@@ -42,6 +42,13 @@ function App() {
     visible: filteredData.length,
     favorite: favoriteIds.length,
   };
+  const handleReset = () => {
+    setKeyword("");
+    setCategory("all");
+    setFavoriteIds([]);
+    setFavoriteOnly(false);
+    searchInputRef.current.value = "";
+  };
   return (
     <>
       <div className="container">
@@ -51,6 +58,7 @@ function App() {
             onKeywordChange={setKeyword}
             inputRef={searchInputRef}
             onFocusSearch={handleFocusSearch}
+            onReset={handleReset}
           />
         </div>
         <div className="card p-2">
