@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import "./App.css";
 import SearchForm from "./components/SearchForm";
 import CategoryFilter from "./components/CategoryFilter";
@@ -21,17 +21,16 @@ function App() {
         const matchedKeyword = item.title.toLowerCase().includes(keyword.toLowerCase());
         const matchedCategory = category === "all" || item.category === category;
         const matchedFavorite = !favoriteOnly || favoriteIds.includes(item.id);
-        console.log(matchedFavorite);
         return matchedCategory && matchedKeyword && matchedFavorite;
       }),
     [keyword, category, favoriteIds, favoriteOnly],
   );
 
-  const handleToggleFavorite = _id => {
+  const handleToggleFavorite = useCallback(_id => {
     setFavoriteIds(prev =>
       prev.includes(_id) ? prev.filter(itemId => itemId !== _id) : [...prev, _id],
     );
-  };
+  }, []);
   const handleFocusSearch = () => {
     searchInputRef.current.focus();
   };

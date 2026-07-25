@@ -1,4 +1,7 @@
-export default function StudyItem({ item, onToggleFavorite, isFavorited }) {
+import { memo } from "react";
+
+function StudyItem({ item, onToggleFavorite, isFavorited }) {
+  console.log(`${item.id}번글 렌더`);
   return (
     <>
       <li className="list-group-item">
@@ -14,3 +17,5 @@ export default function StudyItem({ item, onToggleFavorite, isFavorited }) {
     </>
   );
 }
+
+export default memo(StudyItem);
