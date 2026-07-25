@@ -26,7 +26,6 @@ function App() {
       prev.includes(_id) ? prev.filter(itemId => itemId !== _id) : [...prev, _id],
     );
   };
-  console.log(favoriteIds);
   return (
     <>
       <div className="container">
@@ -38,7 +37,11 @@ function App() {
           <CategoryFilter category={category} onCategoryChange={setCategory} />
         </div>
         <div className="card p-2">
-          <StudyList filteredData={filteredData} onToggleFavorite={handleToggleFavorite} />
+          <StudyList
+            filteredData={filteredData}
+            onToggleFavorite={handleToggleFavorite}
+            favoriteIds={favoriteIds}
+          />
         </div>
       </div>
     </>

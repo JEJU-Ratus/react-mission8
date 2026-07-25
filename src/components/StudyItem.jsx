@@ -1,4 +1,4 @@
-export default function StudyItem({ item, onToggleFavorite }) {
+export default function StudyItem({ item, onToggleFavorite, isFavorited }) {
   return (
     <>
       <li className="list-group-item">
@@ -8,7 +8,7 @@ export default function StudyItem({ item, onToggleFavorite }) {
           분류 : {item.category} / 난이도 : {item.level}
         </p>
         <button className="btn btn-light" onClick={() => onToggleFavorite(item.id)}>
-          즐겨찾기 추가
+          {isFavorited ? "즐겨찾기 해제" : "즐겨찾기 추가"}
         </button>
       </li>
     </>
