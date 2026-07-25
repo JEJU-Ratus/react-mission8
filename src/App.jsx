@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import "./App.css";
 import SearchForm from "./components/SearchForm";
 import CategoryFilter from "./components/CategoryFilter";
@@ -10,7 +10,7 @@ function App() {
   const [category, setCategory] = useState("all");
   const [favoriteIds, setFavoriteIds] = useState([]);
   const [favoriteOnly, setFavoriteOnly] = useState(false);
-
+  const searchInputRef = useRef(null);
   const filteredData = useMemo(
     () =>
       StudyData.filter(item => {
@@ -28,12 +28,22 @@ function App() {
       prev.includes(_id) ? prev.filter(itemId => itemId !== _id) : [...prev, _id],
     );
   };
+  const handleFocusSearch = () => {
+    searchInputRef.current.focus();
+  };
+  useEffect(() => {
+    handleFocusSearch();
+  }, []);
   return (
     <>
       <div className="container">
         <h1>React Mission 8</h1>
         <div className="card p-2">
-          <SearchForm onKeywordChange={setKeyword} />
+          <SearchForm
+            onKeywordChange={setKeyword}
+            inputRef={searchInputRef}
+            onFocusSearch={handleFocusSearch}
+          />
         </div>
         <div className="card p-2">
           <CategoryFilter category={category} onCategoryChange={setCategory} />
